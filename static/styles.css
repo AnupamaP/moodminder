@@ -1,0 +1,16 @@
+#logo {
+width: 300px;
+height: 300px;
+position: absolute;
+left: 50%;
+top: 10%; 
+margin-left: -150px;
+margin-top: -150px;
+display:none;   
+}
+
+body{
+	background:url("/static/logo.png") no-repeat;
+	background-position:45% 2000%;
+}
+

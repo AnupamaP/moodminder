@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <script src="/static/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.css">
+    <!--<link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap-theme.min.css">-->
+    <link rel="stylesheet" href="/static/styles1.css">
+</head>
+<body>
+<div id="logo">
+	<center><img src="{% static "logo.png" %}" alt="logo" style="width:200px;height:100px;"></center>
+</div>  
+  <div class="col-lg-12">
+      <style>
+        .form-signin {
+          max-width: 550px;
+          padding: 15px;
+          margin: 0 auto;
+        }    
+      </style>
+
+
+      <div class="container text-center">
+          <form class="form-signin" id="login_form" method="post" action="/app/profile_past/">
+            
+            {% csrf_token %}
+            
+            <br>
+            <input type="text" name="user" class="form-control" placeholder="Twitter User Name, e.g: realdonaldtrump" value="" required autofocus>
+            <br>
+            <button id="get-tweet-btn" class="btn btn-lg btn-primary btn-block" type="submit">Get Latest Tweet</button>
+            <br>
+          </form>
+      </div>
+       <div class="table-responsive">
+          <table class="table table-bordered table-hover table-striped tablesorter">
+              <thead>
+              <tr>
+                <th class="header"> User Handle <i class="icon-sort"></i></th>
+                <th class="header"> Tweets <i class="icon-sort"></i></th>
+                <th class="header"> Sentiment <i class="icon-sort"></i></th>
+                <th class="header"> Recommendation <i class="icon-sort"></i></th>
+              </tr>
+          </thead>
+          <tbody>
+          
+          {% for key in data %}
+              <tr>
+                  <td>{{ key.name }}</td>
+                  <td>{{ key.tweets }}</td>
+                  <td>{{ key.sentiment }}</td>
+                  <td>{{ key.recommendation }}</td>
+              </tr>
+          {% endfor %}
+          
+          </tbody>
+          </table>
+      </div>
+    </div>
+</body>
+</html>
